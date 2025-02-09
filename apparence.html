@@ -97,8 +97,9 @@
         // Fonction pour jouer l'effet de craquement
         function playBoneCrack() {
             const sound = document.getElementById('bone-crack');
-            sound.currentTime = 0;
-            sound.play();
+            audio.currentTime = 0;
+            audio.volume = 1;
+            audio.play();
         }
     </script>
 </body>
