@@ -100,47 +100,68 @@
             0%, 100% { opacity: 1; }
             50% { opacity: 0.6; }
         }
-
-        .glitch-text {
-            display: inline-block;
-        }
-
-        .glitch-char {
-            display: inline-block;
-            animation: glitchText 0.3s infinite alternate;
-        }
-
-        @keyframes glitchText {
-            0% { opacity: 1; }
-            50% { opacity: 0; }
-            100% { opacity: 1; }
-        }
     </style>
 </head>
 <body>
+    <!-- Audio en arrière-plan -->
+    <audio id="background-music" autoplay loop>
+        <source src="Old_TV_static.mp3" type="audio/mpeg">
+        Votre navigateur ne supporte pas l'élément audio.
+    </audio>
+
+    <!-- Audio pour l'effet de craquement -->
+    <audio id="bone-crack">
+        <source src="https://www.myinstants.com/media/sounds/bone-crack.mp3" type="audio/mpeg">
+    </audio>
+
     <div class="header">
         <div class="nav">
-            <a href="acceuil">Accueil</a>
-            <a href="histoire">Histoire</a>
-            <a href="capacite">Capacités</a>
-            <a href="personnalite">Personnalité</a>
-            <a href="apparence">Apparence</a>
+            <a href="acceuil" onclick="playBoneCrack()">Accueil</a>
+            <a href="histoire" onclick="playBoneCrack()">Histoire</a>
+            <a href="capacite" onclick="playBoneCrack()">Capacités</a>
+            <a href="personnalite" onclick="playBoneCrack()">Personnalité</a>
+            <a href="apparence" onclick="playBoneCrack()">Apparence</a>
         </div>
     </div>
 
     <div class="main-content">
         <h1>Fiche RP</h1>
         <h2 id="glitch-name">Härtz Torheit</h2>
-        <p class="quote">"Il est là, avec moi, je l'entend, tout le temps"</p>
+        <p class="quote">"Ils me parlent, mais vous ne les entendez pas..."</p>
     </div>
 
     <script>
+        // Forcer la lecture de l'audio dès le chargement de la page
+        document.addEventListener('DOMContentLoaded', () => {
+            const audio = document.getElementById('background-music');
+            audio.volume = 1; // Volume augmenté à 1
+            audio.play().catch(error => {
+                console.log("Erreur de lecture audio :", error);
+            });
+        });
+
+        // Activer l'audio lors d'une interaction utilisateur (au cas où la lecture automatique échoue)
+        document.body.addEventListener('click', () => {
+            const audio = document.getElementById('background-music');
+            if (audio.paused) {
+                audio.play();
+            }
+        });
+
+        // Fonction pour jouer l'effet de craquement
+        function playBoneCrack() {
+            const sound = document.getElementById('bone-crack');
+            sound.currentTime = 0;
+            sound.play();
+        }
+
+        // Effet de glitch sur le nom
         function randomGlitchEffect() {
-            const nameElement = document.getElementById("glitch-name");
-            const originalText = "Härtz Torheit";
-            let glitchedText = "";
+            const nameElement = document.getElementById('glitch-name');
+            const originalText = 'Härtz Torheit';
+            let glitchedText = '';
             const glitchChars = ['#', '@', '%', '&', '*', '?', '!', '$'];
-            
+
             for (let i = 0; i < originalText.length; i++) {
                 if (Math.random() > 0.7) {
                     glitchedText += glitchChars[Math.floor(Math.random() * glitchChars.length)];
@@ -148,7 +169,7 @@
                     glitchedText += originalText[i];
                 }
             }
-            
+
             nameElement.innerHTML = glitchedText;
         }
 
