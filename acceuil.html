@@ -1,1 +1,158 @@
-menu de selection
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fiche RP Härtz</title>
+    <style>
+        body {
+            font-family: 'Courier New', monospace;
+            margin: 0;
+            padding: 0;
+            background-color: #0a0a0a;
+            color: #b30000;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            text-shadow: 2px 2px 4px rgba(255, 0, 0, 0.7);
+        }
+
+        .header {
+            background-color: #111;
+            color: #b30000;
+            padding: 20px 0;
+            text-align: center;
+            border-bottom: 4px solid #b30000;
+            font-size: 1.5rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            filter: blur(0.5px);
+        }
+
+        .nav {
+            display: flex;
+            justify-content: space-around;
+            padding: 10px;
+        }
+
+        .nav a {
+            flex: 1;
+            color: #b30000;
+            text-decoration: none;
+            padding: 15px;
+            background-color: #222;
+            border-radius: 5px;
+            border: 2px solid #b30000;
+            font-weight: bold;
+            text-align: center;
+            display: block;
+            transition: 0.3s ease-in-out;
+        }
+
+        .nav a:hover {
+            background-color: #600;
+            transform: scale(1.1);
+        }
+
+        .main-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            padding: 20px;
+            background-image: url('https://cdn.artstation.com/p/thumbnails/001/483/545/thumb.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            color: #ffffff;
+            filter: grayscale(70%);
+        }
+
+        h1 {
+            color: #ff0000;
+            font-size: 3rem;
+            margin-bottom: 10px;
+            text-shadow: 4px 4px 6px rgba(255, 0, 0, 0.7);
+            animation: glitch 1.5s infinite alternate;
+        }
+
+        h2 {
+            color: #ffffff;
+            font-size: 1.5rem;
+            margin-bottom: 40px;
+        }
+
+        @keyframes glitch {
+            0% { text-shadow: -2px -2px 0px red, 2px 2px 0px blue; }
+            100% { text-shadow: 2px -2px 0px red, -2px 2px 0px blue; }
+        }
+
+        .quote {
+            font-size: 1.2rem;
+            font-style: italic;
+            color: #ff0000;
+            text-shadow: 2px 2px 4px rgba(255, 0, 0, 0.7);
+            animation: flicker 2s infinite;
+        }
+
+        @keyframes flicker {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.6; }
+        }
+
+        .glitch-text {
+            display: inline-block;
+        }
+
+        .glitch-char {
+            display: inline-block;
+            animation: glitchText 0.3s infinite alternate;
+        }
+
+        @keyframes glitchText {
+            0% { opacity: 1; }
+            50% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="nav">
+            <a href="acceuil">Accueil</a>
+            <a href="histoire">Histoire</a>
+            <a href="capacite">Capacités</a>
+            <a href="personnalite">Personnalité</a>
+            <a href="apparence">Apparence</a>
+        </div>
+    </div>
+
+    <div class="main-content">
+        <h1>Fiche RP</h1>
+        <h2 id="glitch-name">Härtz Torheit</h2>
+        <p class="quote">"Il est là, avec moi, je l'entend, tout le temps..."</p>
+    </div>
+
+    <script>
+        function randomGlitchEffect() {
+            const nameElement = document.getElementById("glitch-name");
+            const originalText = "Härtz Torheit";
+            let glitchedText = "";
+            const glitchChars = ['#', '@', '%', '&', '*', '?', '!', '$'];
+            
+            for (let i = 0; i < originalText.length; i++) {
+                if (Math.random() > 0.7) {
+                    glitchedText += glitchChars[Math.floor(Math.random() * glitchChars.length)];
+                } else {
+                    glitchedText += originalText[i];
+                }
+            }
+            
+            nameElement.innerHTML = glitchedText;
+        }
+
+        setInterval(randomGlitchEffect, 500);
+    </script>
+</body>
+</html>
