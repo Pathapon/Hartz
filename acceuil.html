@@ -112,7 +112,10 @@
     <audio id="bone-crack">
         <source src="whispers_le_vrai.mp3" type="audio/mpeg">
     </audio>
-
+    <!--<audio id="bone-crack-2">
+        <source src="whispers_le_vrai.mp3" type="audio/mpeg">
+    </audio>-->
+    
     <div class="header">
         <div class="nav">
             <a href="acceuil" onclick="playBoneCrack()">Accueil</a>
@@ -148,10 +151,16 @@
         });
 
         // Fonction pour jouer l'effet de craquement
-        function playBoneCrack() {
+        /*function playBoneCrack() {
             const sound = document.getElementById('bone-crack');
             sound.currentTime = 0;
             sound.play();
+        }*/
+        function playBoneCrack() {
+            const sound = document.getElementById('bone-crack');
+            const clone = sound.cloneNode(true); // Clone l'élément audio
+            clone.currentTime = 0; // Remet le son au début
+            clone.play(); // Joue le clone
         }
 
         // Effet de glitch sur le nom
